@@ -1,19 +1,26 @@
 "use client";
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store, { persistor } from '../redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
+import Navbar from '../components/shared/Navbar';
+import Footer from '../components/shared/Footer';
 
 type TProps = {
     children: React.ReactNode;
 }
 
-const Wrapper = ({children}: TProps) => {
+const Wrapper = ({ children }: TProps) => {
     return (
         <Provider store={store}>
-            {
-                children
-            }
-        </Provider>
+            <PersistGate loading={null} persistor={persistor}>
+                <Navbar></Navbar>
+                {
+                    children
+                }
+                <Footer></Footer>
+            </PersistGate>
+        </Provider >
     );
 };
 

@@ -18,13 +18,13 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     addAuth: (state, action) =>{
-        state = action.payload.access,
-        state = action.payload.refresh,
-        state = action.payload.user_id
+        state.access = action.payload.access,
+        state.refresh = action.payload.refresh,
+        state.user_id = action.payload.user_id
     }
   },
 })
 
 
-export const {  } = counterSlice.actions
+export const { addAuth } = counterSlice.actions
 export default counterSlice.reducer;
