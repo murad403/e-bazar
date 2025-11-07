@@ -1,6 +1,6 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
-@theme {
-    --color-basic: "#9775FA";
-    --color-heading: "#1D1E20";
+@theme{
+    --color-basic: #9775FA;
 }

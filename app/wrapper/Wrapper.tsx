@@ -15,12 +15,14 @@ const Wrapper = ({ children }: TProps) => {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <Navbar></Navbar>
-                {
+                <div className='bg-white min-h-screen px-3 md:px-10 lg:px-20'>
+                    {
                     children
                 }
+                </div>
                 <Footer></Footer>
             </PersistGate>
-        </Provider >
+        </Provider>
     );
 };
 
