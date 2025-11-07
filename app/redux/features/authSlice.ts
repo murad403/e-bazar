@@ -4,13 +4,15 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface AuthSlice {
   access: string;
   refresh: string;
-  user_id: number;
+  user_id: string;
+  username: string;
 }
 
 const initialState: AuthSlice = {
    access: "",
    refresh: "",
-   user_id: 0,
+   user_id: "",
+   username: ""
 }
 
 export const counterSlice = createSlice({
@@ -18,9 +20,11 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     addAuth: (state, action) =>{
-        state.access = action.payload.access,
-        state.refresh = action.payload.refresh,
-        state.user_id = action.payload.user_id
+      // console.log(action.payload);
+        state.access = action.payload.access || "",
+        state.refresh = action.payload.refresh || "",
+        state.user_id = action.payload.user_id || "",
+        state.username = action.payload.username || ""
     }
   },
 })
