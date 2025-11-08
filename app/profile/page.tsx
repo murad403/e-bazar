@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import NavigateButton from '../components/ui/NavigateButton';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FiEdit } from "react-icons/fi";
+import ProfileHeader from '../components/ui/ProfileHeader';
 
 type FormInputs = {
     name: string;
@@ -40,6 +40,7 @@ const page = () => {
     return (
         <div className="">
             <div className="w-full">
+                <ProfileHeader title='Personal information' description='Update your personal information below'></ProfileHeader>
                 {!isEditing && (
                     <div className="bg-white/30 p-5 rounded-lg shadow-md space-y-4 w-full">
                         <div>
