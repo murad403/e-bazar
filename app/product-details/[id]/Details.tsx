@@ -8,7 +8,9 @@ const Details = () => {
     const dispatch = useAppDispatch();
     const isLoading = false;
     const handleAddToCart = () => {
+        const id = Math.random().toString(36).substring(2, 10);
         dispatch(addCart({
+            id,
             name: "Apple iPhone 15",
             price: 999,
             quantity: 2
@@ -18,7 +20,7 @@ const Details = () => {
         <div className="flex justify-center items-center py-10">
             <div className="flex flex-col md:flex-row justify-between items-center gap-10 w-full md:w-[70%]">
                 <div className="w-full md:w-[50%] border border-gray-300 p-3 rounded-lg">
-                    <Image className="h-[300px] w-full" src={productImage} alt="Product" width={400} height={400} />
+                    <Image className=" object-cover w-full" src={productImage} alt="Product" width={400} height={400} />
                     <div>
                         <div className="flex items-center justify-between">
                             <h3 className="text-lg font-semibold">Size</h3>
