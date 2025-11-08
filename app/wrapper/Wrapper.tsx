@@ -16,7 +16,7 @@ const Wrapper = ({ children }: TProps) => {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <Navbar></Navbar>
-                <div className='bg-gray-100 min-h-screen px-3 md:px-10 lg:px-20 text-gray-800'>
+                <div className='bg-gray-100 min-h-screen px-3 md:px-10 lg:px-20 text-gray-800 pb-10'>
                     {
                         children
                     }

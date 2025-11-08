@@ -17,7 +17,7 @@ const page = () => {
 
     const onSubmit: SubmitHandler<CheckoutInputs> = (data) => {
         console.log("Checkout Data:", data);
-        router.push("/profile/card")
+        // router.push("/profile/card")
     };
     return (
         <div className="flex justify-center items-center w-full py-10 flex-col">

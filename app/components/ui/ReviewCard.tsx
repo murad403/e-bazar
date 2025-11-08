@@ -16,8 +16,7 @@ const ReviewCard = () => {
 
                 </div>
                 <div>
-                    <p className='text-gray-600'><span className='font-semibold text-lg'>4.5</span> rating</p>
-                    raing star
+                    <p className='text-gray-600'><span className='font-semibold text-lg'>4.5</span> rating</p>  
                 </div>
             </div>
             <p className='text-gray-700'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit voluptates enim esse autem a voluptatum dolorum quod voluptatem iusto.</p>
