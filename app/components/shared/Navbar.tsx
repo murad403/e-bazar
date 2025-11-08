@@ -1,11 +1,15 @@
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { CiShoppingCart } from 'react-icons/ci';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 import navbarLinks from '@/app/libs/navbar';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
+    const path = usePathname();
+    // console.log(path);
 
     return (
         <nav className="relative bg-gray-200 text-gray-700">
@@ -17,7 +21,7 @@ const Navbar = () => {
                     {
                         navbarLinks.map((link) => (
                             <li key={link.route}>
-                                <Link href={link.path} onClick={() => setOpen(false)}>{link.route}</Link>
+                                <Link className={`${path === link.path ? "text-purple-600": "text-gray-700"}`} href={link.path} onClick={() => setOpen(false)}>{link.route}</Link>
                             </li>
                         ))
                     }
@@ -61,7 +65,7 @@ const Navbar = () => {
                     {
                         navbarLinks.map((link) => (
                             <li key={link.route}>
-                                <Link href={link.path} onClick={() => setOpen(false)}>{link.route}</Link>
+                                <Link className={`${path === link.path ? "text-purple-600": "text-gray-700"}`} href={link.path} onClick={() => setOpen(false)}>{link.route}</Link>
                             </li>
                         ))
                     }
