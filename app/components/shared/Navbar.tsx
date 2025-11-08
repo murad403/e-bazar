@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
         <nav className="relative bg-gray-200 text-gray-700">
-            <div className="max-w-7xl mx-auto flex items-center justify-between py-2 px-4 md:px-10">
+            <div className="flex items-center justify-between py-2 px-1 md:px-10 lg:px-20">
                 <Link href="/" className="text-2xl md:text-3xl lg:text-4xl text-basic font-bold">
                     Laza
                 </Link>
