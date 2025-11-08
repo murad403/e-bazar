@@ -4,6 +4,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import authImage from "../../../public/auth/auth.png";
 import Image from "next/image";
 import NavigateButton from "@/app/components/ui/NavigateButton";
+import { toast } from "react-toastify";
+import { useResetPasswordMutation } from "@/app/redux/features/authApi";
 
 type TInputs = {
     password: string;
@@ -13,10 +15,21 @@ type TInputs = {
 const page = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<TInputs>();
     const router = useRouter();
-    const isLoading = false;
+    const [resetPassword, {isLoading}] = useResetPasswordMutation();
 
     const onSubmit: SubmitHandler<TInputs> = async (data) => {
-        console.log(data);
+        if(data.password !== data.confirmPassword){
+            toast.error("Inter same password");
+            return;
+        }
+        try {
+            const res = await resetPassword({new_password: data.password}).unwrap();
+            toast.success(res.message);
+            router.push("/shop")
+        } catch (error: any) {
+            console.log(error);
+            toast.error(error?.data?.detail);
+        }
     };
 
     return (
@@ -28,23 +41,23 @@ const page = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 w-full md:w-1/3 bg-white p-5 rounded-lg shadow-md">
                     <div className="space-y-5">
                         <div>
-                        <input
-                            type="text"
-                            placeholder="Password"
-                            className="appearance-none outline-none border-b text-gray-700 border-gray-400 w-full px-3 py-2"
-                            {...register("password", { required: true })}
-                        />
-                        {errors.password && <span className="text-red-700 text-sm">Password is required</span>}
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Confirm Password"
-                            className="appearance-none outline-none border-b text-gray-700 border-gray-400 w-full px-3 py-2"
-                            {...register("confirmPassword", { required: true })}
-                        />
-                        {errors.confirmPassword && <span className="text-red-700 text-sm">Confirm Password is required</span>}
-                    </div>
+                            <input
+                                type="text"
+                                placeholder="Password"
+                                className="appearance-none outline-none border-b text-gray-700 border-gray-400 w-full px-3 py-2"
+                                {...register("password", { required: true })}
+                            />
+                            {errors.password && <span className="text-red-700 text-sm">Password is required</span>}
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Confirm Password"
+                                className="appearance-none outline-none border-b text-gray-700 border-gray-400 w-full px-3 py-2"
+                                {...register("confirmPassword", { required: true })}
+                            />
+                            {errors.confirmPassword && <span className="text-red-700 text-sm">Confirm Password is required</span>}
+                        </div>
                     </div>
 
                     <div className="space-y-5">

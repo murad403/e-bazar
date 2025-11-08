@@ -5,6 +5,9 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useSignInMutation } from "@/app/redux/features/authApi";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { addAuth } from "@/app/redux/features/authSlice";
 
 type TInputs = {
     username: string;
@@ -16,18 +19,18 @@ const page = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const { register, handleSubmit, formState: { errors } } = useForm<TInputs>();
     const router = useRouter();
-    const isLoading = false;
+    const [signIn, {isLoading}] = useSignInMutation();
+    const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<TInputs> = async (data) => {
-        console.log(data);
-        // try {
-        //   const res = await login({ username: data.username, password: data.password }).unwrap();
-        //   dispatch(addAuth({ username: res?.data?.username }));
-        //   toast.success("Login successful!");
-        //   router.push("/dashboard");
-        // } catch (error: any) {
-        //   toast.error(error?.data?.detail || "Invalid credentials");
-        // }
+        try {
+          const res = await signIn(data).unwrap();
+          toast.success(res.message);
+          dispatch(addAuth({ user_id: res.data.user_id, access: res.data.access, refresh: res.data.refresh }));
+          router.push("/shop");
+        } catch (error: any) {
+          toast.error("Invalid credentials");
+        }
     };
 
     return (

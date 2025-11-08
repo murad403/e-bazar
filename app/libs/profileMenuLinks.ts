@@ -12,7 +12,7 @@ type TProfileMenuLinks = {
 const profileMenuLinks: TProfileMenuLinks[] = [
     { path: "Account Information", route: "/profile" , icon: IoIosInformationCircleOutline },
     { path: "Order", route: "/profile/order", icon: MdOutlineShoppingBag },
-    { path: "My Cart", route: "/profile/cart", icon: PiWallet },
+    { path: "My Cart", route: "/profile/card", icon: PiWallet },
     { path: "Settings", route: "/profile/settings", icon: IoSettingsOutline },
 ]
 export default profileMenuLinks;

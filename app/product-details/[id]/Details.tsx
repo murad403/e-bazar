@@ -1,8 +1,19 @@
+"use client"
 import Image from "next/image";
 import productImage from "../../../public/products/product.jpg";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { addCart } from "@/app/redux/features/cart/cartSlice";
 
 const Details = () => {
+    const dispatch = useAppDispatch();
     const isLoading = false;
+    const handleAddToCart = () => {
+        dispatch(addCart({
+            name: "Apple iPhone 15",
+            price: 999,
+            quantity: 2
+        }))
+    }
     return (
         <div className="flex justify-center items-center py-10">
             <div className="flex flex-col md:flex-row justify-between items-center gap-10 w-full md:w-[70%]">
@@ -31,6 +42,7 @@ const Details = () => {
                     <p className="text-xl font-bold">$3843</p>
                     <p><span className="font-medium">Description:</span> The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with Read More..</p>
                     <button
+                        onClick={handleAddToCart}
                         type="submit"
                         className="text-white w-full bg-basic px-4 py-2 rounded-lg cursor-pointer flex justify-center items-center"
                     >
